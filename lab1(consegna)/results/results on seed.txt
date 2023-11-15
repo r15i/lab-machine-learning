@@ -1,4 +1,9 @@
-seed 2122841 + 1
+perceptron_no_randomization()
+
+Training Error of perceptron (30 iterations): 0.33049343272985443
+Test Error of perceptron (30 iterations): 0.08251264306627629
+
+preceptron() with seed 2122841 + 1
 
 Training Error of perceptron (30 iterations): 0.2701455449059283
 Test Error of perceptron (30 iterations): 0.28404255319148936
@@ -6,16 +11,13 @@ Test Error of perceptron (30 iterations): 0.28404255319148936
 Training Error of perceptron (300 iterations): 0.2463613773517927
 Test Error of perceptron (300 iterations): 0.0002620865716508433
 
-
 Training Error of perceptron (30000 iterations): 0.23855165069222578
 Test Error of perceptron (30000 iterations): 0.00025377835180024017
 
-
-49 min
 Training Error of perceptron (300 000 iterations): 0.23855165069222578 
 Test Error of perceptron (300 000 iterations): 0.00025377835180024017
 
-seed 2122841 + 250
+preceptron() with seed 2122841 + 250
 
 Training Error of perceptron (30 iterations): 0.2584309549165779
 Test Error of perceptron (30 iterations): 0.26170212765957446
