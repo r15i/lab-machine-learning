@@ -3,7 +3,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 from sklearn import linear_model, preprocessing
 
-IDnumber = 2122841 + 250
+IDnumber = 2122841 + 20000
 np.random.seed(IDnumber)
 
 def load_dataset(filename):
@@ -13,7 +13,9 @@ def load_dataset(filename):
     Y = data_train.iloc[:, 3].values
     Y = 2*Y-1
     return X, Y
-X, Y = load_dataset('data/telecom_customer_churn_cleaned.csv')
+X, Y = load_dataset('data/telecom_customer_churn_cleaned.csv')[:10]
+
+
 m_training = int(len(X)//(1/0.75))
 m_test = len(X) - m_training
 
@@ -115,6 +117,7 @@ def perceptron_no_randomization(X, Y, max_num_iterations):
     return best_w, best_error
 
 
+print(f"seed --->{IDnumber}")
 w_found, error = perceptron_no_randomization(X_training, Y_training, 30)
 print("Training Error of perceptron_no_randomization (30 iterations): " + str(error))
 
@@ -126,7 +129,7 @@ true_loss_estimate = errors/len(Y_test)
 print("Test Error of perceptron_no_randomization (30 iterations): " +
       str(true_loss_estimate))
 
-exit()
+
 
 def count_errors(current_w, X, Y):
 
