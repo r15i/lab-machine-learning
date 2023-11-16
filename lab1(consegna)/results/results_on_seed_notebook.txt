@@ -1,0 +1,9 @@
+perceptron_no_randomization() (seed 2122841 + 1 )
+
+Training Error of perceptron (30 iterations): 0.33049343272985443
+Test Error of perceptron (30 iterations): 0.32978723404255317
+
+preceptron() with seed 2122841 + 1
+
+preceptron() with seed 2122841 + 250
+
