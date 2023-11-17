@@ -128,7 +128,7 @@ def perceptron(X, Y, max_num_iterations):
         print(f"iteration {num_iter}")
         print(f"best error {best_error} ")
         print(f"index_misclassified {index_misclassified} ")
-        # plot_line_and_points(best_w, X, Y)
+        plot_line_and_points(best_w, X, Y)
     print("")
     print(f"best error {best_error} ")
     print(f"index_misclassified {index_misclassified} ")
@@ -140,7 +140,7 @@ def perceptron(X, Y, max_num_iterations):
     return best_w, best_error
 
 
-IDnumber = 2122841 + 1
+IDnumber = 2122841 + 20000
 np.random.seed(IDnumber)
 
 n = 1
