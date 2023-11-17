@@ -7,7 +7,6 @@ import matplotlib.pyplot as plt
 
 
 def plot_line_and_points(w, X, Y):
-
     print(f"vector {w}")
     print(f"variables")
     print(X)
@@ -69,7 +68,7 @@ def count_errors(current_w, X, Y):
 
 def perceptron_update(current_w, x, y):
 
-    new_w = current_w + n*x * y
+    new_w = current_w + 1 *x * y
     return new_w
 
 
@@ -91,14 +90,14 @@ def perceptron(X, Y, max_num_iterations):
     best_error = num_samples+1
 
     curr_w = np.zeros(len(X[0]), dtype=int)
-    # curr_w = np.array([0, 1, 0.5])
+    
     best_w = curr_w.copy()
 
     num_misclassified, index_misclassified = count_errors(curr_w, X, Y)
     print("INIZIALIZATION W")
     print(f"best error {best_error} ")
     print(f"index_misclassified {index_misclassified} ")
-    # plot_line_and_points(best_w, X, Y)
+    #plot_line_and_points(best_w, X, Y)
 
     if num_misclassified < best_error:
         best_error = num_misclassified
@@ -108,7 +107,7 @@ def perceptron(X, Y, max_num_iterations):
     print("BEFORE THE LOOP")
     print(f"best error {best_error} ")
     print(f"index_misclassified {index_misclassified} ")
-    plot_line_and_points(best_w, X, Y)
+    #plot_line_and_points(best_w, X, Y)
     num_iter = 0
 
     while index_misclassified != -1 and num_iter < max_num_iterations:
@@ -126,14 +125,14 @@ def perceptron(X, Y, max_num_iterations):
         num_iter += 1
 
         _, index_misclassified = count_errors(best_w, X, Y)
-        print("")
+        print(f"iteration {num_iter}")
         print(f"best error {best_error} ")
         print(f"index_misclassified {index_misclassified} ")
-        #plot_line_and_points(best_w, X, Y)
+        # plot_line_and_points(best_w, X, Y)
     print("")
     print(f"best error {best_error} ")
     print(f"index_misclassified {index_misclassified} ")
-    plot_line_and_points(best_w, X, Y)
+    #plot_line_and_points(best_w, X, Y)
 
     if (best_error > 0):
         best_error = best_error/num_samples
@@ -144,34 +143,70 @@ def perceptron(X, Y, max_num_iterations):
 IDnumber = 2122841 + 1
 np.random.seed(IDnumber)
 
-n = 1
+
 
 X = np.array([
     [1, -2, 2],
     [1, 1, 3],
-    # [1, 2, 4],
+    [1, 2, 4],
     [1, -3, 5],
     [1, 4, 6],
     [1, 5, 7],
 ])
 Y = np.array([
-                -1,
-                1,
-    #          -1,
-               -1,
-                1,
-                1,
+    -1,
+    1,
+    -1,
+    -1,
+    1,
+    1,
 ])
 
-best_w = np.array([1, 6, 7.5])  # added from bok
 
 
-# plot_line_and_points(best_w,X,Y)
-# error, index = count_errors(best_w, X, Y)
-# best_w = perceptron_update(best_w,X[index],Y[index])
-# plot_line_and_points(best_w,X,Y)
+X, Y = load_dataset('data/telecom_customer_churn_cleaned.csv')[:10]
 
 
-res = perceptron(X, Y, 200)
+m_training = int(len(X)//(1/0.99))
+m_test = len(X) - m_training
 
-# print(res)
+
+X_training = X[:m_training]
+Y_training = Y[:m_training]
+
+
+X_test = X[m_training:]
+
+Y_test = Y[m_training:]
+
+print("Number of samples in the train set:", X_training.shape[0])
+print("Number of samples in the test set:", X_test.shape[0])
+print("\nNumber of night instances in test:", np.sum(Y_test == -1))
+print("Number of day instances in test:", np.sum(Y_test == 1))
+
+
+scaler = preprocessing.StandardScaler().fit(X_training)
+np.set_printoptions(suppress=True)
+X_training = scaler.transform(X_training)
+print("Mean of the training input data:", X_training.mean(axis=0))
+print("Std of the training input data:", X_training.std(axis=0))
+
+X_test = scaler.fit_transform(X_test)
+print("Mean of the test input data:", X_test.mean(axis=0))
+print("Std of the test input data:", X_test.std(axis=0))
+
+X_training, X_test = to_homogeneous(X_training, X_test)
+
+
+
+best_w = np.array([1,1,1])
+#need to change the number of tests
+plot_line_and_points(best_w,X_test,Y_test)
+error, index = count_errors(best_w, X_test, Y)
+best_w = perceptron_update(best_w,X[index],Y[index])
+plot_line_and_points(best_w,X_test,Y_test)
+
+
+#res = perceptron(X, Y, 200)
+
+
