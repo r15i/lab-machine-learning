@@ -1,0 +1,7 @@
+TO DO 
+
+make a single parameter and change it as we go 
+
+on multiple lr check the learning rate 
+
+on HOmemade NN need to check for the change of layers
